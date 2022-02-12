@@ -1,2 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{e4be70af-2ba5-469d-87cb-f559f2084b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\DX11">
+      <UniqueIdentifier>{ccf4cd84-b885-42bc-b949-6e773407e310}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SwiftDX11.h">
+      <Filter>Rendering\DX11</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SwiftDX11.cpp">
+      <Filter>Rendering\DX11</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

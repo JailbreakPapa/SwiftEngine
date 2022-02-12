@@ -9,6 +9,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\SwiftFiles">
+      <UniqueIdentifier>{4ddc3c64-aea3-4840-9b63-faaaa3acbf12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{a189e269-defd-4719-bc51-39a84db87146}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -17,6 +23,12 @@
     <ClInclude Include="pch.h">
       <Filter>WinDll</Filter>
     </ClInclude>
+    <ClInclude Include="SwiftVarPresision.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SwiftMath.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -24,6 +36,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>WinDll</Filter>
+    </ClCompile>
+    <ClCompile Include="SwiftMath.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
