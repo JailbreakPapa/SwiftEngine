@@ -1,3 +1,3 @@
 # SwiftEngine
-Advanced DX11/Vulkan Engine for complex projects.
+Advanced OpenGL(4.6)/Vulkan Engine for complex projects.
 Dont mind that compiler is mispelled.....
