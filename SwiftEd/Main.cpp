@@ -1,7 +1,8 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-
+#include"imgui_impl_glfw.h"
+#include"imgui_impl_opengl3.h"
 #include"shaderClass.h"
 #include"VAO.h"
 #include"VBO.h"
@@ -29,7 +30,9 @@ GLuint indices[] =
 };
 
 
-
+bool TriDraw;
+float size = 1.0f;
+float color[4] = { 0.0f,0.0f,0.0f,1.0f };
 int main()
 {
 	// Initialize GLFW
@@ -61,7 +64,13 @@ int main()
 	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
 	glfwSetFramebufferSizeCallback(window, DynamicOGLResize);
 
-
+	// Initialize ImGUI
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
 
 	// Generates Shader object using shaders defualt.vert and default.frag
 	Shader shaderProgram("default.vert", "default.frag");
@@ -79,12 +88,13 @@ int main()
 
 	// Links VBO to VAO
 	VAO1.LinkVBO(VBO1, 0);
+
 	// Unbind all to prevent accidentally modifying them
 	VAO1.Unbind();
 	VBO1.Unbind();
 	EBO1.Unbind();
 
-
+	
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -93,12 +103,36 @@ int main()
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		// Clean the back buffer and assign the new color to it
 		glClear(GL_COLOR_BUFFER_BIT);
+		//Imgui Start.
+		// Tell OpenGL a new frame is about to begin
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+		if (TriDraw){
+			glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+		}
+		// ImGUI window creation
+		ImGui::Begin("My name is window, ImGUI window");
+		// Text that appears in the window
+		ImGui::Text("SwiftEngine ImGUI Test.");
+		// Checkbox that appears in the window
+		ImGui::Checkbox("Draw Triangle", &TriDraw);
+		ImGui::ShowDemoWindow();
+		
+		// Ends the window
+		ImGui::End();
+		
+
+		// Renders the ImGUI elements
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
 		// Take care of all GLFW events
