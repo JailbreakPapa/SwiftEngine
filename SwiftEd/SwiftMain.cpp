@@ -1,65 +1,80 @@
+#include<iostream>
+#include<glad/glad.h>
+#include<GLFW/glfw3.h>
 #include "SwiftRender.h"
-#include <iostream>
-#include <io.h>
+// Vertex Shader source code
 using namespace SwiftRender;
-SwiftOGL SGL;
-void FBWindowDraw(GLFWwindow* window, int width, int height);
-void SwiftProssessInput(GLFWwindow* window);
-int main(int argv, char** argc)
+SwiftRender::SwiftOGL SGL;
+
+void DynamicViewPort(GLFWwindow* Window,int width,int height);
+
+int main(int argc,char** argv[])
 {
+	// Initialize GLFW
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); /* States to glfw our GLFW Version. This is the version that all MODERN GPUS should support.*/
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6); 
+
+	// Tell GLFW what version of OpenGL we are using 
+	// In this case we are using OpenGL 3.3
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	// Tell GLFW we are using the CORE profile
+	// So that means we only have the modern functions
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	//Start of Window Creation.
-	GLFWwindow* SwiftOGLWindow = glfwCreateWindow(1078, 600, "SwiftEngine - OpenGL", NULL, NULL);
-	if (SwiftOGLWindow == NULL){
-		std::cout << "SwiftError: Failed To Create OGL Window." << std::endl;
+	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
+	GLFWwindow* window = glfwCreateWindow(800, 800, "SwiftEngine - OpenGL", NULL, NULL);
+	// Error check if the window fails to create
+	if (window == NULL)
+	{
+		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
-	glfwMakeContextCurrent(SwiftOGLWindow); //makes OGL Focus on this main Window.
-	//Since we will need glad, we will init it, then check if it failed.
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	// Introduce the window into the current context
+	glfwMakeContextCurrent(window);
+
+	//Load GLAD so it configures OpenGL
+	gladLoadGL();
+	// Specify the viewport of OpenGL in the Window
+	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
+	glfwSetFramebufferSizeCallback(window, DynamicViewPort);
+	// Main while loop
+	while (!glfwWindowShouldClose(window))
 	{
-		std::cout << "SwiftError: Failed to initialize GLAD" << std::endl;
-		return -1;
-	}
-	//function, that dynamicly resizes the OGL Viewport,and tells glad to call the function by tick, and resize the viewport.
-	glfwSetFramebufferSizeCallback(SwiftOGLWindow, FBWindowDraw);
-	//Start of imgui
-	
-	//======imgui
-	while (!glfwWindowShouldClose(SwiftOGLWindow)) {
-		SwiftProssessInput(SwiftOGLWindow);
-		//rendering code goes here.
-
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		
+		// Specify the color of the background
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		// Clean the back buffer and assign the new color to it
 		glClear(GL_COLOR_BUFFER_BIT);
-
 		SGL.OpenGlRender();
-
-		//end of rendering code.
-		glfwSwapBuffers(SwiftOGLWindow);
+		// Tell OpenGL which Shader Program we want to use
+		glUseProgram(SGL.shaderProgram);
+		// Bind the VAO so OpenGL knows to use it
+		glBindVertexArray(SGL.VAO);
+		// Draw the triangle using the GL_TRIANGLES primitive
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		// Swap the back buffer with the front buffer
+		glfwSwapBuffers(window);
+		// Take care of all GLFW events
 		glfwPollEvents();
 	}
-	glDeleteShader(SGL.fragmentShader);
-	glDeleteShader(SGL.vertexShader);
+
+
+
+	// Delete all the objects we've created
 	glDeleteVertexArrays(1, &SGL.VAO);
 	glDeleteBuffers(1, &SGL.VBO);
-	glDeleteBuffers(1, &SGL.EBO);
+	glDeleteProgram(SGL.shaderProgram);
+	// Delete window before ending the program
+	glfwDestroyWindow(window);
+	// Terminate GLFW before ending the program
+	delete(&SGL);
+	
 	glfwTerminate();
 	return 0;
 }
 
-void FBWindowDraw(GLFWwindow* window, int width, int height)
+void DynamicViewPort(GLFWwindow* Window,int width,int height)
 {
 	glViewport(0, 0, width, height);
-}
-
-void SwiftProssessInput(GLFWwindow* window)
-{
-	if (glfwGetKey(window, GLFW_KEY_F12) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
 }

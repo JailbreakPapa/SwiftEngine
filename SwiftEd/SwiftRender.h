@@ -6,33 +6,22 @@
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include <vulkan/vulkan.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace SwiftRender
 {
-	class SwiftDirectX11
-	{
-	
-		
-	};
-	class SwiftVulkan
-	{
-
-	};
 	class SwiftOGL
 	{
 	public:
 	     GLint ShaderSuccess;
 		 GLchar infoLog[512];
 	public:
-		 unsigned int VBO;
-		 unsigned int VAO;
-		 unsigned int EBO;
-		 unsigned int vertexShader;
-		 unsigned int fragmentShader;
-		 unsigned int shaderProgram;
+		// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
+		GLuint VAO, VBO;
+		GLuint vertexShader;
+		GLuint fragmentShader;
+		GLuint shaderProgram;
 		 enum SwiftShader
 		 {
 			 SWIFT_OGL_FRAG = 1,
