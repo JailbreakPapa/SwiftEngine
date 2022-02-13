@@ -1,7 +1,8 @@
 #include "SwiftRender.h"
 #include <iostream>
+#include <io.h>
 void FBWindowDraw(GLFWwindow* window, int width, int height);
-
+void SwiftProssessInput(GLFWwindow* window);
 int main(int argv, char** argc)
 {
 	glfwInit();
@@ -25,7 +26,17 @@ int main(int argv, char** argc)
 	}
 	//function, that dynamicly resizes the OGL Viewport,and tells glad to call the function by tick, and resize the viewport.
 	glfwSetFramebufferSizeCallback(SwiftOGLWindow, FBWindowDraw);
+	//Start of imgui
+	
+	//======imgui
 	while (!glfwWindowShouldClose(SwiftOGLWindow)) {
+		SwiftProssessInput(SwiftOGLWindow);
+		//rendering code goes here.
+
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		//end of rendering code.
 		glfwSwapBuffers(SwiftOGLWindow);
 		glfwPollEvents();
 	}
@@ -36,4 +47,10 @@ int main(int argv, char** argc)
 void FBWindowDraw(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
+}
+
+void SwiftProssessInput(GLFWwindow* window)
+{
+	if (glfwGetKey(window, GLFW_KEY_F12) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
 }

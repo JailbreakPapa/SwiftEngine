@@ -72,22 +72,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\Programming\ImGUI;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
+    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
     <LibraryPath>C:\Programming\DXCompiler\lib\x64;C:\Programming\DirectXTK-nov2021\Bin\Desktop_2022\x64\Release;C:\VulkanSDK\1.2.198.1\Lib;C:\Programming\GLFW\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\Programming\ImGUI;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
+    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
     <LibraryPath>C:\Programming\DXCompiler\lib\x64;C:\Programming\DirectXTK-nov2021\Bin\Desktop_2022\x64\Release;C:\VulkanSDK\1.2.198.1\Lib;C:\Programming\GLFW\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\Programming\ImGUI;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
+    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
     <LibraryPath>C:\Programming\DXCompiler\lib\x64;C:\Programming\DirectXTK-nov2021\Bin\Desktop_2022\x64\Release;C:\VulkanSDK\1.2.198.1\Lib;C:\Programming\GLFW\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\Programming\ImGUI;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
+    <IncludePath>C:\Programming\GLAD\include;C:\Programming\GLFW\include;C:\VulkanSDK\1.2.198.1\Include;C:\Programming\DXCompiler\inc;C:\Programming\DirectXTK-nov2021\Inc</IncludePath>
     <LibraryPath>C:\Programming\DXCompiler\lib\x64;C:\Programming\DirectXTK-nov2021\Bin\Desktop_2022\x64\Release;C:\VulkanSDK\1.2.198.1\Lib;C:\Programming\GLFW\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,13 +155,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\ImGUI\imgui-1.86\imgui.h" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx11.h" />
+    <ClInclude Include="imgui_impl_glfw.h" />
+    <ClInclude Include="imgui_impl_opengl3.h" />
+    <ClInclude Include="imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
     <ClInclude Include="SwiftRender.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\GLAD\src\glad.c" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui_impl_glfw.cpp" />
+    <ClCompile Include="imgui_impl_opengl3.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="SwiftMain.cpp" />
-    <ClCompile Include="SwiftRender.cpp" />
     <ClCompile Include="SwiftOGLWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
