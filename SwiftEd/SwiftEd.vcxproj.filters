@@ -53,7 +53,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SwiftOGLWindow.cpp">
+    <ClCompile Include="SwiftOGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SwiftMain.cpp">
@@ -85,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="imgui_widgets.cpp">
       <Filter>Header Files\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SwiftRender.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

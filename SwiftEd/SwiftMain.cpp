@@ -1,6 +1,8 @@
 #include "SwiftRender.h"
 #include <iostream>
 #include <io.h>
+using namespace SwiftRender;
+SwiftOGL SGL;
 void FBWindowDraw(GLFWwindow* window, int width, int height);
 void SwiftProssessInput(GLFWwindow* window);
 int main(int argv, char** argc)
@@ -35,7 +37,8 @@ int main(int argv, char** argc)
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
+		
+		SGL.OpenGlRender();
 		//end of rendering code.
 		glfwSwapBuffers(SwiftOGLWindow);
 		glfwPollEvents();

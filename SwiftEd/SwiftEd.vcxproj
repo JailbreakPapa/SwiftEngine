@@ -178,7 +178,8 @@
     <ClCompile Include="imgui_tables.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="SwiftMain.cpp" />
-    <ClCompile Include="SwiftOGLWindow.cpp" />
+    <ClCompile Include="SwiftOGL.cpp" />
+    <ClCompile Include="SwiftRender.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
