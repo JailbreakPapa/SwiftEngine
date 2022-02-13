@@ -37,12 +37,18 @@ int main(int argv, char** argc)
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		
+
 		SGL.OpenGlRender();
+
 		//end of rendering code.
 		glfwSwapBuffers(SwiftOGLWindow);
 		glfwPollEvents();
 	}
+	glDeleteShader(SGL.fragmentShader);
+	glDeleteShader(SGL.vertexShader);
+	glDeleteVertexArrays(1, &SGL.VAO);
+	glDeleteBuffers(1, &SGL.VBO);
+	glDeleteBuffers(1, &SGL.EBO);
 	glfwTerminate();
 	return 0;
 }
