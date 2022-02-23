@@ -1,5 +1,5 @@
 # SwiftEngine
-Advanced OpenGL(4.6)/Vulkan Engine for complex projects.
+test OpenGL(4.6) template
 Dont mind that compiler is mispelled.....
 
 
